@@ -1,0 +1,54 @@
+[
+  {
+    "id": "rename",
+    "before": {
+      "name": "Ada",
+      "role": "user"
+    },
+    "after": {
+      "name": "Grace",
+      "role": "user"
+    },
+    "goldReadSet": [
+      "/name",
+      "/role"
+    ],
+    "goldWriteSet": [
+      "/name"
+    ],
+    "recovery": "reversible"
+  },
+  {
+    "id": "collateral",
+    "before": {
+      "name": "Ada",
+      "role": "user"
+    },
+    "after": {
+      "name": "Grace",
+      "role": "admin"
+    },
+    "goldReadSet": [
+      "/name",
+      "/role"
+    ],
+    "goldWriteSet": [
+      "/name"
+    ],
+    "recovery": "reversible"
+  },
+  {
+    "id": "noop",
+    "before": {
+      "name": "Ada"
+    },
+    "after": {
+      "name": "Ada"
+    },
+    "goldReadSet": [
+      "/name"
+    ],
+    "goldWriteSet": [],
+    "recovery": "reversible"
+  }
+]

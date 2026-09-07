@@ -1,0 +1,73 @@
+{
+  "specVersion": "0.1",
+  "id": "customer.rename",
+  "version": "0.1.0",
+  "description": "Change customer name while preserving role",
+  "trust": "verified",
+  "confidence": 1,
+  "preconditions": [
+    {
+      "type": "object",
+      "required": [
+        "name",
+        "role"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    }
+  ],
+  "expectedEffects": [
+    {
+      "path": "/name",
+      "kind": "change",
+      "value": "Grace"
+    }
+  ],
+  "invariants": [
+    "/role"
+  ],
+  "postconditions": [
+    {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "const": "Grace"
+        }
+      }
+    }
+  ],
+  "finality": {
+    "kind": "snapshot",
+    "description": "Synchronous in-memory capture; no remote durability claim"
+  },
+  "idempotency": {
+    "kind": "idempotent"
+  },
+  "recovery": {
+    "kind": "reversible",
+    "description": "A caller can restore a detached before state within exclusive local ownership. Runtime does not automatically restore."
+  },
+  "evidence": [
+    {
+      "source": "tests/unit/runtime.test.ts",
+      "description": "Manual gold contract for deterministic in-memory fixture; verification is limited to this fixture",
+      "observedAt": "2026-09-06T00:00:00Z"
+    }
+  ],
+  "readSet": [
+    "/name",
+    "/role"
+  ],
+  "writeSet": [
+    "/name"
+  ]
+}

@@ -1,0 +1,17 @@
+name: Feature request
+description: Propose a focused improvement
+title: "feature: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and evidence
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Effect Contract or adapter impact
+      description: Explain how this preserves the project boundary.
+    validations:
+      required: true

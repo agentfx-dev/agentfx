@@ -1,0 +1,38 @@
+{
+  "name": "@agentfx/cli",
+  "version": "0.1.0-alpha.1",
+  "private": true,
+  "description": "AgentFX cli \u2014 verification infrastructure for autonomous work",
+  "type": "module",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agentfx-dev/agentfx.git",
+    "directory": "packages/cli"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsdown src/index.ts --format esm --dts --clean"
+  },
+  "dependencies": {
+    "@agentfx/contracts": "workspace:*",
+    "@agentfx/testing": "workspace:*",
+    "@agentfx/openapi": "workspace:*"
+  },
+  "bin": {
+    "agentfx": "./dist/index.mjs"
+  }
+}

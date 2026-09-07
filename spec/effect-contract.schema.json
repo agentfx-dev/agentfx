@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentfx-dev.github.io/agentfx/spec/effect-contract.schema.json",
+  "title": "Effect Contract v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "specVersion",
+    "id",
+    "version",
+    "description",
+    "trust",
+    "confidence",
+    "preconditions",
+    "expectedEffects",
+    "invariants",
+    "postconditions",
+    "finality",
+    "idempotency",
+    "recovery",
+    "evidence",
+    "readSet",
+    "writeSet"
+  ],
+  "properties": {
+    "specVersion": {
+      "const": "0.1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trust": {
+      "enum": [
+        "inferred",
+        "verified",
+        "trusted"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "preconditions": {
+      "type": "array",
+      "items": {
+        "type": [
+          "object",
+          "boolean"
+        ]
+      }
+    },
+    "postconditions": {
+      "type": "array",
+      "items": {
+        "type": [
+          "object",
+          "boolean"
+        ]
+      }
+    },
+    "expectedEffects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "kind"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^(?:/(?:[^~]|~[01])*)?$"
+          },
+          "kind": {
+            "enum": [
+              "change",
+              "add",
+              "remove"
+            ]
+          },
+          "value": {}
+        }
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(?:/(?:[^~]|~[01])*)?$"
+      },
+      "uniqueItems": true
+    },
+    "readSet": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(?:/(?:[^~]|~[01])*)?$"
+      },
+      "uniqueItems": true
+    },
+    "writeSet": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(?:/(?:[^~]|~[01])*)?$"
+      },
+      "uniqueItems": true
+    },
+    "finality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "description"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "snapshot",
+            "settled"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "idempotency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "idempotent",
+            "non-idempotent",
+            "unknown"
+          ]
+        },
+        "key": {
+          "type": "string"
+        }
+      }
+    },
+    "recovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "description"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "reversible",
+            "compensable",
+            "reconcilable",
+            "irreversible",
+            "unknown"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "description",
+          "observedAt"
+        ],
+        "properties": {
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "observedAt": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    }
+  }
+}

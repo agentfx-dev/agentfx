@@ -1,0 +1,26 @@
+name: Release (staged)
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Package directory to stage after npm ownership is confirmed
+        required: true
+        type: string
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  stage:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    environment: npm-staging
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - run: corepack enable && corepack prepare pnpm@11.25.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build && pnpm validate:packages
+      - name: Stage one existing npm package with OIDC
+        working-directory: ${{ inputs.package }}
+        run: npm stage publish --provenance
+      - name: Human approval required
+        run: echo 'Review the staged package on npmjs.com and approve with 2FA; this workflow never runs npm publish.'
