@@ -32,7 +32,7 @@
     "vitepress": "1.6.4",
     "publint": "0.3.24",
     "@arethetypeswrong/cli": "0.18.5",
-    "@changesets/cli": "3.0.2",
+    "@changesets/cli": "3.0.3",
     "prettier": "3.9.9",
     "eslint": "10.10.0",
     "typescript-eslint": "8.70.1",
