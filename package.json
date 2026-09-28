@@ -34,7 +34,7 @@
     "@arethetypeswrong/cli": "0.18.5",
     "@changesets/cli": "3.0.2",
     "prettier": "3.9.9",
-    "eslint": "10.10.0",
+    "eslint": "10.11.0",
     "typescript-eslint": "8.70.1",
     "@types/node": "24.13.3",
     "@types/pg": "8.23.1",
