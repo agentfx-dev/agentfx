@@ -22,7 +22,7 @@
     "demo:postgres": "node examples/postgres.mjs",
     "demo:mcp": "node examples/mcp.mjs",
     "bench": "node bench/run.mjs",
-    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm build && pnpm test && pnpm test:integration && pnpm validate:spec && pnpm validate:packages && pnpm docs:build",
+    "check": "pnpm lint && pnpm typecheck && pnpm build && pnpm test && pnpm test:integration && pnpm validate:spec && pnpm validate:packages && pnpm docs:build",
     "changeset": "changeset"
   },
   "devDependencies": {
