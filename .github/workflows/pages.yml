@@ -2,7 +2,13 @@ name: Documentation
 on:
   push:
     branches: [main]
-    paths: ['docs/**', 'packages/**', 'spec/**', 'package.json', 'pnpm-lock.yaml']
+    paths:
+      - '.github/workflows/pages.yml'
+      - 'docs/**'
+      - 'packages/**'
+      - 'spec/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
   workflow_dispatch:
 permissions:
   contents: read
