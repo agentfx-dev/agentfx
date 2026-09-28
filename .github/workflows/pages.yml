@@ -23,6 +23,7 @@ jobs:
         with:
           path: docs/.vitepress/dist
   deploy:
+    if: ${{ vars.ENABLE_PAGES == 'true' }}
     needs: build
     runs-on: ubuntu-latest
     environment:
